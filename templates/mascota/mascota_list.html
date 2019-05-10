@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+
+{% block contenido %}
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Raza</td>
+			<td>Descripcion</td>
+			<td>Estado</td>
+			<td>Seleccionar</td>
+		</tr>>
+
+	</thead>
+	<tbody>
+		{% if mascotas %}
+
+		{% for mascota in mascotas %}
+		
+		<tr>
+			<td>{{ mascota.id }}</td>
+			<td>{{ mascota.nombre }}</td>
+			<td>{{ mascota.raza }}</td>
+			<td>{{ mascota.descripcion }}</td>
+			<td>{{ mascota.estado }}</td>
+			<td>  
+				{% if mascota.estado == 'DISPONIBLE' %}
+				<a href="#ventana1" class="btn btn-primary" data-toggle="modal">ADOPTAR</a>
+				<div class="modal fade" id="ventana1">
+					<div class=modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+							<h2 class="modal-title">¿Desea adoptar esta mascota?
+							</h2>
+							</div>
+							<div class="modal-body">
+								<a href="#ventana2" type="button" class="btn btn-primary"  data-toggle="modal">Sí </a>
+								<div class="modal fade" id="ventana2">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h2 class="modal-title"> MASCOTA ADOPTADA :)
+												</h2>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>	
+								<button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+			</td>
+
+		</tr>>
+		
+		{% endfor %}
+		{% else %}
+		<h1> No hay registros de mascotas</h1>
+
+		
+		{% endif %}
+	</tbody>
+</table>
+
+{% endblock %}
